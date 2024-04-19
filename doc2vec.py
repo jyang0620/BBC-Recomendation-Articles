@@ -66,8 +66,6 @@ def load_glove(filename):
 
     ignore stopwords
     """
-    ## YOUR CODE HERE
-    
     vals = {}
     with open(filename) as f:
         for line in f.readlines():
@@ -113,7 +111,6 @@ def words(text):
     """
     text = text.lower()
     text = re.sub("[" + string.punctuation + '0-9\\r\\t\\n]', ' ', text)
-    ## YOUR CODE HERE 
     text_list = text.split(' ')
     filt_list = [text for text in text_list if len(text) >= 3]
     bird = [word for word in filt_list if word not in ENGLISH_STOP_WORDS]
@@ -125,7 +122,6 @@ def split_title(text):
 
     Split the test by "\n" and assume that the first element is the title
     """
-    ## YOUR CODE HERE
     return text.split('\n')[0]
 
 
@@ -143,7 +139,6 @@ def load_articles(articles_dirname, gloves):
 
     When computing the vector for each document, use just the text, not the text and title.
     """
-    ## YOUR CODE HERE
     mass_files = []
     files = filelist(articles_dirname)
     for file in files:
@@ -164,7 +159,6 @@ def doc2vec(text, gloves):
     for each word and then divide by the number of words. Ignore words
     not in gloves.
     """
-    ## YOUR CODE HERE
     centroid = []
     
     for word in text:
@@ -185,7 +179,6 @@ def distances(article, articles):
         list of (distance, a) for a in articles
         where a is a list [filename, title, text-minus-title, wordvec-centroid]
     """
-    ## YOUR CODE HERE
     return [(np.linalg.norm(article[3] - artic[3]), artic) for artic in articles]
 
 
@@ -218,17 +211,13 @@ def main():
    
     # save a articles.pkl a list with the following information about articles
     # [[topic, filename, title, text], ...]
-    ## YOUR CODE HERE
     with open("articles.pkl", "wb") as f:
         pickle.dump(articles, f)
-    
-
 
     # save in recommended.pkl a dictionary with top 5 recommendations for each article. 
     # given an article use (topic, filename) as the key
     # the recomendations are a list of [topic, filename, title] for the top 5 closest articles
     # you may want to also add the title and test of the current article
-    ## YOUR CODE HERE
     top5dic = {}
     
     for i, article in enumerate(articles):
